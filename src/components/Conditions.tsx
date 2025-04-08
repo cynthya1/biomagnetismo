@@ -30,16 +30,19 @@ const Conditions = () => {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
+  const [showAll, setShowAll] = useState(false);
 
-  const filteredConditions = conditions.filter(condition =>
-    condition.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const itemsToShow = 9;
 
   const filteredByCategory = selectedCategory === "Todos"
-    ? filteredConditions
+    ? conditions.filter(condition =>
+        condition.toLowerCase().includes(searchTerm.toLowerCase())
+      )
     : categories.find(cat => cat.name === selectedCategory)?.conditions.filter(condition =>
         condition.toLowerCase().includes(searchTerm.toLowerCase())
       ) || [];
+
+  const displayedConditions = showAll ? filteredByCategory : filteredByCategory.slice(0, itemsToShow);
 
   return (
     <section id="conditions" className="bg-white py-16">
@@ -64,7 +67,7 @@ const Conditions = () => {
         </div>
         <div className="flex flex-wrap gap-4 justify-center mb-8">
           <button
-            onClick={() => setSelectedCategory("Todos")}
+            onClick={() => { setSelectedCategory("Todos"); setShowAll(false); }}
             className={`px-6 py-2 rounded-full transition-colors duration-200 ${
               selectedCategory === "Todos"
                 ? "bg-red-600 text-white"
@@ -76,7 +79,7 @@ const Conditions = () => {
           {categories.map((category) => (
             <button
               key={category.name}
-              onClick={() => setSelectedCategory(category.name)}
+              onClick={() => { setSelectedCategory(category.name); setShowAll(false); }}
               className={`px-6 py-2 rounded-full transition-colors duration-200 ${
                 selectedCategory === category.name
                   ? "bg-red-600 text-white"
@@ -88,18 +91,29 @@ const Conditions = () => {
           ))}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredByCategory.map((condition, index) => (
+          {displayedConditions.map((condition, index) => (
             <motion.div
               key={condition}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
+              transition={{ duration: 0.3 }}
+              layout
               className="bg-white border border-red-600/10 p-6 rounded-xl shadow-sm hover:bg-red-600/5 transition-all duration-300"
             >
               <h3 className="text-lg font-semibold text-gray-900">{condition}</h3>
             </motion.div>
           ))}
         </div>
+        {filteredByCategory.length > itemsToShow && (
+          <div className="text-center mt-8">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="px-8 py-3 text-lg font-medium bg-transparent border-2 border-red-600 text-red-600 rounded-full hover:bg-red-600/10 transition-colors"
+            >
+              {showAll ? "Mostrar Menos" : "Mostrar Más"}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
