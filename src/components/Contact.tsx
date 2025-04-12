@@ -23,12 +23,12 @@ const Contact = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-1 gap-8">
             {/* Mapa */}
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <div className="bg-red-600 text-white p-4 rounded-lg mb-4 flex items-center">
-                <MapPin className="w-6 h-6 mr-2" />
-                <h3 className="text-xl font-bold">Nuestra Ubicación</h3>
+            <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg">
+              <div className="bg-red-600 text-white p-3 sm:p-4 rounded-lg mb-4 flex items-center">
+                <MapPin className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
+                <h3 className="text-lg sm:text-xl font-bold">Nuestra Ubicación</h3>
               </div>
-              <div style={{ height: "500px", position: "relative" }}>
+              <div className="h-64 sm:h-96 md:h-[500px] relative">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.650456456789!2d-77.033073!3d-12.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8f8a4d3804b%3A0x1f1a2f2f2f2f2f2f!2sMalecon%20Balta%20758%2C%20Miraflores%2C%20Lima!5e0!3m2!1ses-419!2spe!4v1234567890!5m2!1ses-419!2spe"
                   width="100%"

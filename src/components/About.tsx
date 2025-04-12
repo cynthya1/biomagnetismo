@@ -19,15 +19,15 @@ const About = () => {
           className="max-w-6xl mx-auto"
         >
           {/* Sección Principal */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
-            <div className="relative w-full h-[500px] rounded-lg overflow-hidden shadow-xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="order-2 md:order-1 relative w-full h-[500px] rounded-lg overflow-hidden shadow-xl">
               <img 
-                src="/foto11.jpg" 
-                alt="Nuestra Terapeuta" 
+                src="/foto2.jpg"
+                alt="Terapia de Biomagnetismo"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div>
+            <div className="order-1 md:order-2">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 ¿Qué es el Biomagnetismo?
               </h2>
@@ -39,47 +39,9 @@ const About = () => {
                   El Par biomagnético es un método creado por el Dr Goiz Durán basado en la impactación de imanes estáticos de 1000 gaus sobre el cuerpo. Según el Dr Goiz el Par Biomagnético tiene la capacidad de estudiar, detectar, clasificar, medir y corregir las alteraciones funcionales del pH de los órganos vivos.
                 </p>
                 <p>
-                  Todos los habitantes del planeta estamos sometidos al magnetismo terrestre. Cada célula, tejido, órgano y sistema así como las sustancias químicas asimiladas o desechadas tiene su propio campo magnético.
+                  La terapia Biomagnética actúa como un sistema de diagnóstico y tratamiento que detecta alteraciones energéticas en los órganos. Mediante la colocación de imanes en puntos específicos, se logra neutralizar patógenos y restablecer el estado natural de salud. Este enfoque holístico considera el cuerpo como un sistema integral, donde cada punto biomagnético está relacionado con múltiples funciones corporales.
                 </p>
               </div>
-            </div>
-          </div>
-
-          {/* Beneficios y Características */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Beneficios de la Terapia</h3>
-              <div className="space-y-4">
-                <p className="text-gray-700">
-                  El origen de muchas enfermedades se encuentra en las modificaciones magnéticas a las que nuestros estados de ánimo han sometido al organismo. Siempre se ha dicho que las emociones influyen en el desarrollo o curación de las enfermedades, y esta es la explicación: interfieren y alteran nuestro equilibrio magnético.
-                </p>
-                <p className="text-gray-700">
-                  Esto se pudo comprobar de una manera particular cuando los primeros astronautas al volver a la tierra padecieron enfermedades debidas al cambio de la atracción magnética sobre el cuerpo. Entonces, se empezó a estudiar científica y clínicamente la interacción de los campos magnéticos sobre el cuerpo.
-                </p>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Características del Tratamiento</h3>
-              <ul className="space-y-4">
-                {[
-                  "Desde la primera sesión verás los cambios en tu organismo",
-                  "El terapeuta te dará indicaciones a seguir en casa",
-                  "De acuerdo a tu afección, se personaliza el tratamiento",
-                  "Puedes consultar cualquier duda con el terapeuta durante la sesión",
-                  "Tiempo aproximado de la sesión en total es de 1 hora",
-                  "No tiene efectos secundarios",
-                  "Complementa la medicina convencional"
-                ].map((item, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1" />
-                    <span className="text-gray-700">{item}</span>
-                  </li>
-                ))}
-                <li className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-red-600 mr-2 mt-0.5" />
-                  <span>Atención totalmente personalizada</span>
-                </li>
-              </ul>
             </div>
           </div>
         </motion.div>

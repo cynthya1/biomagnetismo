@@ -25,7 +25,7 @@ const videos: Video[] = [
     title: "¿Cómo funciona el Biomagnetismo?",
     thumbnail: `https://img.youtube.com/vi/JQI35qPc-Ho/maxresdefault.jpg`,
     url: "https://www.youtube.com/watch?v=JQI35qPc-Ho",
-    description: "Explicación detallada del proceso de biomagnetismo",
+    description: "Explicación detallada del proceso de Biomagnetismo",
     category: "Educativo"
   },
   {

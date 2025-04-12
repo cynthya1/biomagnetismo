@@ -1,17 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Search } from 'lucide-react';
+import { Circle, ChevronDown, ChevronUp } from 'lucide-react';
 import { useState } from 'react';
-
-const conditions = [
-  "Virus", "Bacterias", "Hongos", "Parásitos", "Acido Úrico",
-  "Asma", "Bronquitis", "Acné vulgar", "Ansiedad", "Dolor de columna/ciática",
-  "Colon irritable", "Irritabilidad", "Tendinitis", "Cistitis", "Dolor de cabeza",
-  "Disfunción eréctil", "Nerviosismo", "Estrés", "Problemas reproductivos",
-  "Ovarios poliquísticos", "Estreñimiento", "Gastritis", "Helicobacter Pilory",
-  "Mareos/ vértigo", "Migrañas", "Disfunción primaria del hígado", "Próstata",
-  "Dolor pélvico", "Rodillas", "Rinitis", "Insonnio", "Útero", "Vegiga", "Ira"
-];
 
 const categories = [
   { name: "Sistema Digestivo", conditions: ["Gastritis", "Helicobacter Pilory", "Colon irritable", "Estreñimiento"] },
@@ -19,7 +9,7 @@ const categories = [
   { name: "Sistema Muscular", conditions: ["Dolor de columna/ciática", "Tendinitis", "Dolor pélvico", "Rodillas"] },
   { name: "Sistema Inmunológico", conditions: ["Virus", "Bacterias", "Hongos", "Parásitos"] },
   { name: "Sistema Respiratorio", conditions: ["Asma", "Bronquitis", "Rinitis"] },
-  { name: "Otros", conditions: ["Acné vulgar", "Disfunción eréctil", "Problemas reproductivos", "Ovarios poliquísticos", "Próstata", "Útero", "Vegiga"] }
+  { name: "Otros", conditions: ["Acné vulgar", "Disfunción eréctil", "Problemas reproductivos", "Ovarios poliquísticos", "Próstata", "Útero", "Vegiga", "Acido Úrico", "Cistitis", "Dolor de cabeza", "Mareos/ vértigo", "Disfunción primaria del hígado", "Ira"] }
 ];
 
 const Conditions = () => {
@@ -28,92 +18,58 @@ const Conditions = () => {
     triggerOnce: true
   });
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("Todos");
-  const [showAll, setShowAll] = useState(false);
+  const [openCategory, setOpenCategory] = useState<string | null>(null);
 
-  const itemsToShow = 9;
-
-  const filteredByCategory = selectedCategory === "Todos"
-    ? conditions.filter(condition =>
-        condition.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    : categories.find(cat => cat.name === selectedCategory)?.conditions.filter(condition =>
-        condition.toLowerCase().includes(searchTerm.toLowerCase())
-      ) || [];
-
-  const displayedConditions = showAll ? filteredByCategory : filteredByCategory.slice(0, itemsToShow);
+  const toggleCategory = (categoryName: string) => {
+    setOpenCategory(openCategory === categoryName ? null : categoryName);
+  };
 
   return (
     <section id="conditions" className="bg-white py-16">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-4">
-          Afecciones que Tratamos
-        </h2>
-        <p className="text-center text-gray-600 mb-8">
-          Consulta por tu caso en particular con nuestra especialista
-        </p>
-        <div className="max-w-3xl mx-auto mb-8">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Buscar afección..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-6 py-4 rounded-full border-2 border-gray-200 focus:border-red-600 focus:ring-2 focus:ring-red-600/20 transition-all duration-300"
-            />
-            <Search className="absolute right-6 top-1/2 transform -translate-y-1/2 text-gray-400" />
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-12">
+            ¿Qué afecciones tratamos? 
+          </h2>
+          
+          <div className="space-y-4">
+            {categories.map((category) => (
+              <div key={category.name} className="overflow-hidden rounded-lg shadow-sm border border-gray-200">
+                <button
+                  onClick={() => toggleCategory(category.name)}
+                  className="w-full flex justify-between items-center px-6 py-4 bg-white text-red-600 hover:bg-gray-50 focus:outline-none text-left"
+                >
+                  <span className="text-lg font-medium">{category.name}</span>
+                  {openCategory === category.name ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                </button>
+                {openCategory === category.name && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="px-6 py-4 bg-white"
+                  >
+                    <ul className="space-y-2">
+                      {category.conditions.map((condition) => (
+                        <li key={condition} className="flex items-center text-gray-700">
+                          <Circle className="w-2 h-2 mr-3 fill-current text-red-600" />
+                          {condition}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
+              </div>
+            ))}
           </div>
-        </div>
-        <div className="flex flex-wrap gap-4 justify-center mb-8">
-          <button
-            onClick={() => { setSelectedCategory("Todos"); setShowAll(false); }}
-            className={`px-6 py-2 rounded-full transition-colors duration-200 ${
-              selectedCategory === "Todos"
-                ? "bg-red-600 text-white"
-                : "bg-white border border-red-600/10 hover:bg-red-600/5"
-            }`}
-          >
-            Todos
-          </button>
-          {categories.map((category) => (
-            <button
-              key={category.name}
-              onClick={() => { setSelectedCategory(category.name); setShowAll(false); }}
-              className={`px-6 py-2 rounded-full transition-colors duration-200 ${
-                selectedCategory === category.name
-                  ? "bg-red-600 text-white"
-                  : "bg-white border border-red-600/10 hover:bg-red-600/5"
-              }`}
-            >
-              {category.name}
-            </button>
-          ))}
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {displayedConditions.map((condition, index) => (
-            <motion.div
-              key={condition}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-              layout
-              className="bg-white border border-red-600/10 p-6 rounded-xl shadow-sm hover:bg-red-600/5 transition-all duration-300"
-            >
-              <h3 className="text-lg font-semibold text-gray-900">{condition}</h3>
-            </motion.div>
-          ))}
-        </div>
-        {filteredByCategory.length > itemsToShow && (
-          <div className="text-center mt-8">
-            <button
-              onClick={() => setShowAll(!showAll)}
-              className="px-8 py-3 text-lg font-medium bg-transparent border-2 border-red-600 text-red-600 rounded-full hover:bg-red-600/10 transition-colors"
-            >
-              {showAll ? "Mostrar Menos" : "Mostrar Más"}
-            </button>
-          </div>
-        )}
+        </motion.div>
       </div>
     </section>
   );

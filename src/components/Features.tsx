@@ -1,7 +1,7 @@
 <section className="bg-[#f3f9fe] py-16">
   <div className="container mx-auto px-4">
     <h2 className="text-3xl font-bold text-center mb-12">
-      Cómo actúa el biomagnetismo en tu cuerpo
+      Cómo actúa el Biomagnetismo en tu cuerpo
     </h2>
     <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
       La terapia trabaja de manera profunda para restaurar el equilibrio en todo el organismo

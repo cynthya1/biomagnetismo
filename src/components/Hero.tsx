@@ -1,9 +1,6 @@
 import { motion } from 'framer-motion';
 
 const Hero = () => {
-  const phoneNumber = '51972700890';
-  const whatsappUrl = `https://wa.me/${phoneNumber}`;
-
   return (
     <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Parallax Background with Video */}
@@ -65,7 +62,7 @@ const Hero = () => {
             transition={{ delay: 0.4 }}
             className="text-5xl md:text-7xl font-bold text-white mb-6 text-shadow-lg"
           >
-            Biomag<span className="text-red-600">netismo</span> Médico
+            Biomagnetismo <br /> Mejórate <span className="text-red-600">HOY</span>
           </motion.h1>
           
           <motion.p
@@ -74,18 +71,10 @@ const Hero = () => {
             transition={{ delay: 0.6 }}
             className="text-xl md:text-2xl text-white mb-8 max-w-2xl mx-auto text-shadow"
           >
-            Descubre el <span className="text-red-600">poder</span> de la terapia magnética para <span className="text-red-600">equilibrar</span> tu salud de forma natural
+            Curación con imanes – Metodología de alta precisión
           </motion.p>
 
           <div className="flex flex-wrap gap-4 justify-center">
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3 text-lg font-medium bg-transparent border-2 border-white text-white rounded-full hover:bg-white/10 transition-colors"
-            >
-              Agenda tu consulta
-            </a>
             <a
               href="#about"
               className="px-8 py-3 text-lg font-medium bg-white/10 backdrop-blur-sm text-white border-2 border-white rounded-full hover:bg-white/20 transition-colors"
