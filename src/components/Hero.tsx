@@ -20,34 +20,6 @@ const Hero = () => {
       {/* Sutil Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/40 z-10" />
 
-      {/* Floating Elements */}
-      <div className="absolute inset-0 z-20">
-        <motion.div
-          animate={{
-            y: [0, -20, 0],
-            rotate: [0, 5, 0]
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-1/4 left-1/4 w-12 h-12 bg-[#f3f9fe]/10 rounded-full backdrop-blur-sm"
-        />
-        <motion.div
-          animate={{
-            y: [0, 20, 0],
-            rotate: [0, -5, 0]
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute bottom-1/4 right-1/4 w-16 h-16 bg-[#f3f9fe]/10 rounded-full backdrop-blur-sm"
-        />
-      </div>
-
       {/* Content */}
       <div className="container mx-auto px-4 z-30">
         <motion.div
