@@ -32,9 +32,10 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="text-5xl md:text-7xl font-bold text-white mb-6 text-shadow-lg"
+            className="text-5xl md:text-7xl font-bold text-white mb-6 text-shadow-lg whitespace-normal"
           >
-            Biomagnetismo <br /> Mejórate <span className="text-red-600">HOY</span>
+            Biomagnetismo <br /> 
+            <span className="inline-block">Mejórate <span className="text-red-600">HOY</span></span>
           </motion.h1>
           
           <motion.p
@@ -45,6 +46,9 @@ const Hero = () => {
           >
             Curación con imanes – Metodología de alta precisión
           </motion.p>
+
+          {/* Este elemento oculto ayuda a forzar la renderización correcta en móviles */}
+          <div aria-hidden="true" className="hidden">Mejórate</div>
 
           <div className="flex flex-wrap gap-4 justify-center">
             <a

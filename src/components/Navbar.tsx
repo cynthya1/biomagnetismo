@@ -63,17 +63,34 @@ const Navbar = () => {
   const closeMenu = () => setIsOpen(false);
   
   const scrollToSection = (href: string) => {
-    const targetElement = document.querySelector(href) as HTMLElement;
-    if (targetElement) {
-        // Calculate offset based on whether navbar is scrolled (compact)
-        const offset = scrolled ? 64 : NAVBAR_HEIGHT; 
-        window.scrollTo({
-            top: targetElement.offsetTop - offset,
-            behavior: 'smooth'
-        });
-    }
-    closeMenu();
-   }
+    closeMenu(); // Close menu first before scrolling
+    
+    setTimeout(() => {
+      const targetElement = document.querySelector(href) as HTMLElement;
+      if (targetElement) {
+          // Calculate offset based on whether navbar is scrolled (compact)
+          const offset = scrolled ? 64 : NAVBAR_HEIGHT; 
+          
+          // Use both methods for better compatibility across browsers and devices
+          try {
+            // Modern method
+            targetElement.scrollIntoView({ 
+              behavior: 'smooth',
+              block: 'start'
+            });
+            
+            // Additional window.scrollTo for iOS Safari compatibility
+            window.scrollTo({
+              top: targetElement.offsetTop - offset,
+              behavior: 'smooth'
+            });
+          } catch (error) {
+            // Fallback for older browsers
+            window.scrollTo(0, targetElement.offsetTop - offset);
+          }
+      }
+    }, 100); // Small delay to ensure menu closes first on mobile
+  }
 
   return (
     <motion.nav
@@ -86,7 +103,7 @@ const Navbar = () => {
     >
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 w-full relative">
-          <div className={`absolute left-16 sm:left-20 md:left-8 top-24 md:top-2 transition-all duration-300 ${
+          <div className={`absolute left-[7rem] sm:left-[7rem] md:left-8 top-52 md:top-2 transition-all duration-300 ${
             scrolled ? "opacity-0 -translate-y-full pointer-events-none" : "opacity-100 translate-y-0"
           }`}>
             <a href="#inicio" onClick={(e) => { e.preventDefault(); scrollToSection('#inicio'); }}>
@@ -147,8 +164,12 @@ const Navbar = () => {
             <a
               key={item.href}
               href={item.href}
-              onClick={(e) => { e.preventDefault(); scrollToSection(item.href); }}
-              className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+              onClick={(e) => { 
+                e.preventDefault();
+                e.stopPropagation(); // Previene propagación de eventos
+                scrollToSection(item.href); 
+              }}
+              className={`block w-full px-3 py-4 rounded-md text-base font-medium transition-colors duration-200 ${
                 activeSection === item.href
                   ? 'bg-red-600 text-white'
                   : scrolled
