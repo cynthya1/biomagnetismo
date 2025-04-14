@@ -15,7 +15,7 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 
 const Footer = () => {
   // Define los enlaces aquí para mayor claridad
-  const facebookUrl = "#"; // Reemplaza con tu URL de Facebook
+  const facebookUrl = "https://www.facebook.com/biomagnetismomejoratehoy?rdid=GTSgvIriivf1avfj&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1AQTTJFkEy%2F#"; // Reemplaza con tu URL de Facebook
   const whatsappUrl = "https://wa.me/51972700890"; // Actualizado con el número correcto
 
   return (
