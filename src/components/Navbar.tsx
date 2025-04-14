@@ -86,7 +86,7 @@ const Navbar = () => {
     >
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 w-full relative">
-          <div className={`absolute left-32 sm:left-36 md:left-8 top-24 md:top-2 transition-all duration-300 ${
+          <div className={`absolute left-24 sm:left-28 md:left-8 top-24 md:top-2 transition-all duration-300 ${
             scrolled ? "opacity-0 -translate-y-full pointer-events-none" : "opacity-100 translate-y-0"
           }`}>
             <a href="#inicio" onClick={(e) => { e.preventDefault(); scrollToSection('#inicio'); }}>
