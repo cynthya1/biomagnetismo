@@ -51,7 +51,7 @@ const Footer = () => {
                 <ul className="space-y-3 mb-4">
                   <li className="flex items-center text-gray-600">
                     <MapPin className="w-5 h-5 text-red-600 mr-3" />
-                    Malecón Balta 758, Miraflores
+                    Av. José Pardo 557, Miraflores.
                   </li>
                   <li className="flex items-center text-gray-600">
                     {/* Usando SVG para WhatsApp */}
